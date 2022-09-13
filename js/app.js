@@ -18,7 +18,7 @@ const showProducts = (products) => {
 
    document.getElementById("all-products").innerHTML = "";
 
-   const allProducts = products.slice(0, 10).map((pd) => pd);
+   const allProducts = products.map((pd) => pd);
    for (const product of allProducts) {
       const image = product.image;
       
@@ -48,6 +48,7 @@ const addToCart = (id, price) => {
    updatePrice('price', price);
 
    updateTaxAndCharge();
+   updateTotal()
    document.getElementById('total-Products').innerText = count;
 };
 
@@ -59,9 +60,9 @@ const showProductDetails = (product_id) => {
 };
 
 const showProductDetailsInModal = (product_details) => {
-   console.log(product_details);
+   console.log(product_details.id);
    setInnerText('exampleModalLabel', product_details.title);
-   setInnerText('product_id', product_details.id);
+   setInnerText('productId', product_details.id);
    setInnerText('modal_body', product_details.description);
    setInnerText('rating', product_details.rating.rate);
 };
@@ -108,7 +109,7 @@ const updateTotal = () => {
       getInputValue('price') +
       getInputValue('delivery-charge') +
       getInputValue('total-tax');
-   document.getElementById('total').innerText = grandTotal;
+   document.getElementById('total').innerText = grandTotal.toFixed(2);
 };
 
 // search by category
